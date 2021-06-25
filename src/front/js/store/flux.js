@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			characters: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -41,6 +42,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			loadCharacters: () => {
+				//get the store
+				const store = getStore();
+
+				fetch("https://www.swapi.tech/api/people")
+					.then(resp => {
+						console.log(resp.code);
+						return resp.json();
+					})
+					.then(data => {
+						let formattedCharacters = data.results.map(item => {
+							return { ...item, favorite: false };
+						});
+						setStore({ characters: formattedCharacters });
+					})
+					.catch(error => console.log("Error loading message from backend", error));
 			}
 		}
 	};
