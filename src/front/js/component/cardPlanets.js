@@ -2,8 +2,8 @@ import React, { Component, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const CardCharacter = props => {
-	const [characterDetails, setCharacterDetails] = useState(undefined);
+export const CardPlanets = props => {
+	const [planetsDetails, setPlanetsDetails] = useState(undefined);
 
 	useEffect(() => {
 		fetch(props.urlData)
@@ -32,8 +32,8 @@ export const CardCharacter = props => {
 				alt="Card image cap"
 			/>
 			<div className="card-body">
-				<h5 className="card-title">{characterDetails ? characterDetails.properties.name : ""}</h5>
-				<p className="card-text description">{characterDetails ? characterDetails.description : ""}</p>
+				<h5 className="card-title">{planetsDetails ? planetsDetails.properties.name : ""}</h5>
+				<p className="card-text description">{planetsDetails ? planetsDetails.description : ""}</p>
 
 				<a href="#" className="btn btn-primary">
 					Go somewhere
@@ -44,7 +44,7 @@ export const CardCharacter = props => {
 	);
 };
 
-CardCharacter.propTypes = {
+CardPlanets.propTypes = {
 	urlData: PropTypes.string,
 	favorite: PropTypes.bool
 };

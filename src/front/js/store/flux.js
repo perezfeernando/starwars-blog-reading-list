@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			characters: []
+			characters: [],
+			planets: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -57,6 +58,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return { ...item, favorite: false };
 						});
 						setStore({ characters: formattedCharacters });
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+			},
+			loadPlanets: () => {
+				//get the store
+				const store = getStore();
+
+				fetch("https://www.swapi.tech/api/planets")
+					.then(resp => {
+						console.log(resp.code);
+						return resp.json();
+					})
+					.then(data => {
+						let formattedPlanets = data.results.map(item => {
+							return { ...item, favorite: false };
+						});
+						setStore({ planets: formattedPlanets });
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			}

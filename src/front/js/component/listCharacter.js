@@ -17,9 +17,11 @@ export const ListCharacter = props => {
 	});
 
 	return (
-		<div>
-			<h1>Characters</h1>
-			{charactersDisplayed.length > 0 ? charactersDisplayed : "Loading characters"}
+		<div className="contenedor">
+			<h1 className="text-leftz">Characters</h1>
+			<div className="contenedor-card">
+				{charactersDisplayed.length > 0 ? charactersDisplayed : "Loading characters"}
+			</div>
 		</div>
 	);
 };
